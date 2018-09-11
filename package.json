@@ -1,0 +1,32 @@
+{
+  "name": "@kiyasov/sticky-session",
+  "version": "1.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "./node_modules/.bin/babel lib --out-dir dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiyasov/stickySession.git"
+  },
+  "author": "Islam Kiyasov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kiyasov/stickySession/issues"
+  },
+  "homepage": "https://github.com/kiyasov/stickySession#readme",
+  "dependencies": {
+    "cluster": "^0.7.7",
+    "ip": "^1.1.5",
+    "net": "^1.0.2",
+    "os": "^0.1.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0"
+  }
+}
