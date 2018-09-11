@@ -1,6 +1,6 @@
 {
   "name": "@kiyasov/sticky-session",
-  "version": "1.0.9",
+  "version": "1.1.4",
   "description": "",
   "main": "dist/index.js",
   "directories": {
@@ -24,6 +24,7 @@
     "cluster": "^0.7.7",
     "http-headers": "^3.0.2",
     "ip": "^1.1.5",
+    "lodash": "^4.17.10",
     "net": "^1.0.2",
     "os": "^0.1.1"
   },
