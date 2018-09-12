@@ -15,6 +15,7 @@ import cluster from "cluster";
 import StickySession from "../lib";
 import SocketIO from "socket.io";
 import express from "express";
+import SocketIORedis from "socket.io-redis";
 
 let stickySession = new StickySession({
   listen: [3000, '127.0.0.1'],
