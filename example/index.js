@@ -8,7 +8,7 @@ const upload = multipart();
 
 let stickySession = new StickySession({
   listen: [3000],
-  workers: 1
+  workers: 3
 });
 
 const app = express();
@@ -36,5 +36,5 @@ if (!stickySession.listen(server)) {
     console.log("server started on 3000 port");
   });
 } else {
-  // Worker code
+  console.log(`worker ${cluster.worker.id} pid ${process.pid} started`);
 }
