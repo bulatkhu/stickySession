@@ -26,6 +26,7 @@ app.get("/upload", (req, res) => {
 });
 
 app.post("/upload", upload, (req, res) => {
+  console.log("тест");
   res.json(req.files);
 });
 
