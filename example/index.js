@@ -11,30 +11,37 @@ let stickySession = new StickySession({
   workers: 3
 });
 
-const app = express();
-
-let server = http.Server(app);
-
-app.get("/", (req, res) => {
-  res.send(`worker id ${cluster.worker.id}`);
-});
-
-app.get("/upload", (req, res) => {
-  res.send(
-    `<form enctype="multipart/form-data" method="post"><input class="form-control" name="images" placeholder="Картинка" type="file"><button type="submit">Upload</button></form>`
-  );
-});
-
-app.post("/upload", upload, (req, res) => {
-  console.log("тест");
-  res.json(req.files);
-});
-
-if (!stickySession.listen(server)) {
-  // Master code
-  server.once("listening", function() {
-    console.log("server started on 3000 port");
-  });
+if (stickySession.listen()) {
+  console.log("server started on 3000 port");
 } else {
+  const app = new express();
+
+  let server = http.createServer(app);
+
+  app.get("/", (req, res) => {
+    console.log("Главная");
+    res.send(`worker id ${cluster.worker.id}`);
+  });
+
+  app.get("/upload", (req, res) => {
+    res.send(
+      `<form enctype="multipart/form-data" method="post"><input class="form-control" name="images" placeholder="Картинка" type="file"><button type="submit">Upload</button></form>`
+    );
+  });
+
+  app.post("/upload", upload, (req, res) => {
+    console.log("тест");
+    res.json(req.files);
+  });
+
+  stickySession.listenWorker(server);
+
+  server.on("connection", () =>
+    console.log(
+      "Новый коннект",
+      `worker ${cluster.worker.id} pid ${process.pid} started`
+    )
+  );
+
   console.log(`worker ${cluster.worker.id} pid ${process.pid} started`);
 }
