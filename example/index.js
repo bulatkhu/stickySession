@@ -14,7 +14,7 @@ let stickySession = new StickySession({
 if (stickySession.listen()) {
   console.log("server started on 3000 port");
 } else {
-  const app = new express();
+  const app = express();
 
   let server = http.createServer(app);
 
@@ -25,12 +25,11 @@ if (stickySession.listen()) {
 
   app.get("/upload", (req, res) => {
     res.send(
-      `<form enctype="multipart/form-data" method="post"><input class="form-control" name="images" placeholder="Картинка" type="file"><button type="submit">Upload</button></form>`
+      `<form enctype="multipart/form-data" method="post"><input class="form-control" name="images" placeholder="Картинка" type="file"><input class="form-control" name="background" placeholder="Картинка" type="file"><button type="submit">Upload</button></form>`
     );
   });
 
   app.post("/upload", upload, (req, res) => {
-    console.log("тест");
     res.json(req.files);
   });
 
